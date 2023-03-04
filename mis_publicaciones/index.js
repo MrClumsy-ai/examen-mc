@@ -29,13 +29,13 @@ $("#publicaciones").on("click", ".borrar", function () {
 let editando = false;
 // editar publicacion
 $("#publicaciones").on("click", ".editar", function () {
+  // hace para que solo salga 1 caja de editar
   if (!editando) {
     editando = true;
     console.log(
       "editando publicacion #" + $(this).closest("div").attr("id") + "..."
     );
-
-    console.log($(this).siblings(".contenido-publicacion").text().trim());
+    // crea la caja para editar
     $(this).closest("div").append(`
   
       <div id="editar">
@@ -58,21 +58,23 @@ $("#publicaciones").on("click", ".editar", function () {
       </div>
   
     `);
+    // para cancelar...
     $("#editar").on("click", ".cancelar-btn", function () {
-      console.log("cancelando edicion...");
+      console.log("edicion cancelada");
       $("#editar").remove();
       editando = false;
     });
+    // para re-publicar
     $("#editar").on("click", ".republicar-btn", function () {
       console.log("re-publicando...");
       let field = $(this).parent().find(".editar-field").val().trim();
-      console.log(field);
-      // $(this).parent().find(".editar-field")
-      // $(this).parent().siblings(".contenido-publicacion").text()
       if (!(field === "")) {
         $(this).parent().siblings(".contenido-publicacion").text(field);
         $("#editar").remove();
         editando = false;
+        console.log("done!");
+      } else {
+        console.log("no se puede re-publicar un string vacio");
       }
     });
   }

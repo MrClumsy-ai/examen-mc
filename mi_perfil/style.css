@@ -1,6 +1,13 @@
+:root {
+  --logo-color: #b98389;
+  --base-color: #1c1e21;
+  --navbar-color: #54494b;
+  --part-color: #444;
+  --call-to-action-color: #db2955;
+  --nombre-de-publicador-color: rgb(255, 175, 1);
+}
 
 #pfp {
-
   object-fit: cover;
   width: 100px;
   height: 100px;
@@ -10,15 +17,37 @@
 }
 
 #main h1 {
-
   margin-top: 10px;
   margin-bottom: 10px;
   font-weight: bold;
 }
 
 #main button {
-
   color: white;
   background-color: var(--base-color);
 }
 
+#editar input {
+  background-color: var(--base-color);
+  border: 0;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 500px;
+}
+
+#editar #nombre-btn {
+  width: 20%;
+  background-color: var(--call-to-action-color);
+  max-width: 100px;
+}
+
+#editar #cancelar-nombre {
+  width: 30%;
+  max-width: 150px;
+}
+
+#editar .editar-generico {
+  background-color: var(--call-to-action-color);
+}
