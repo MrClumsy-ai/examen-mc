@@ -3,8 +3,7 @@ let id = 0;
 // nueva publicacion
 $("#publicar-btn").click(() => {
   id++;
-  if(!($("#publicacion-field").val().trim() == "")) {
-
+  if (!($("#publicacion-field").val().trim() == "")) {
     $("#publicaciones").prepend(
       `<div id="${id}" class="content">
         <h5>
@@ -12,53 +11,69 @@ $("#publicar-btn").click(() => {
         </h5>
         <button class="borrar">borrar</button>
         <button class="editar">editar</button>
-        <p>
+        <p class="contenido-publicacion">
           ${$("#publicacion-field").val()}
         </p>
       </div>`
     );
     $("#publicacion-field").val("");
   }
-
-  
 });
 
 // borrar publicacion
 $("#publicaciones").on("click", ".borrar", function () {
-  console.log("publicacion #"+$(this).closest("div").attr("id") + " borrada");
+  console.log("publicacion #" + $(this).closest("div").attr("id") + " borrada");
   $(this).closest("div").remove();
 });
 
 let editando = false;
 // editar publicacion
 $("#publicaciones").on("click", ".editar", function () {
-
-  if (!editando){
-
+  if (!editando) {
     editando = true;
-    console.log("editando publicacion #"+$(this).closest("div").attr("id")+"...");
-    
+    console.log(
+      "editando publicacion #" + $(this).closest("div").attr("id") + "..."
+    );
+
+    console.log($(this).siblings(".contenido-publicacion").text().trim());
     $(this).closest("div").append(`
   
-      <input 
-        class="editar-field" 
-        type="text" 
-        placeholder="editar:" 
-        value="${$(this).closest("p").text()}"
-      >
-      <input
-        class="republicar-btn"
-        type="submit"
-        value="re-publicar"
-      >
-      <input
-        class="cancelar-btn"
-        type="submit"
-        value="cancelar"
-      >
+      <div id="editar">
+        <input 
+          class="editar-field" 
+          type="text" 
+          placeholder="editar:" 
+          value="${$(this).siblings(".contenido-publicacion").text().trim()}"
+        >
+        <input
+          class="republicar-btn"
+          type="submit"
+          value="re-publicar"
+        >
+        <input
+          class="cancelar-btn"
+          type="submit"
+          value="cancelar"
+        >
+      </div>
   
-    `)
-    
+    `);
+    $("#editar").on("click", ".cancelar-btn", function () {
+      console.log("cancelando edicion...");
+      $("#editar").remove();
+      editando = false;
+    });
+    $("#editar").on("click", ".republicar-btn", function () {
+      console.log("re-publicando...");
+      let field = $(this).parent().find(".editar-field").val().trim();
+      console.log(field);
+      // $(this).parent().find(".editar-field")
+      // $(this).parent().siblings(".contenido-publicacion").text()
+      if (!(field === "")) {
+        $(this).parent().siblings(".contenido-publicacion").text(field);
+        $("#editar").remove();
+        editando = false;
+      }
+    });
   }
-  
-})
+});

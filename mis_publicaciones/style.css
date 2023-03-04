@@ -1,21 +1,18 @@
 :root {
-
   --logo-color: #b98389;
   --base-color: #1c1e21;
   --navbar-color: #54494b;
-  --part-color: #7e8287;
-  --call-to-action-color: #DB2955;
+  --part-color: #444;
+  --call-to-action-color: #db2955;
   --nombre-de-publicador-color: rgb(255, 175, 1);
 }
 
 #nueva-publicacion input {
-
   border: 0;
   border-radius: 10px;
 }
 
 #publicacion-field {
-
   position: relative;
   background-color: var(--base-color);
   padding: 20px;
@@ -25,7 +22,6 @@
 }
 
 #publicar-btn {
-
   position: relative;
   background-color: var(--call-to-action-color);
   padding: 10px;
@@ -36,62 +32,55 @@
 }
 
 #nueva-publicacion {
-
   margin-top: 100px;
 }
 
 #publicaciones {
-
   padding: 0;
 }
 
 #publicaciones .content {
-
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
 #publicaciones button {
-
   color: white;
   padding: 5px;
   border: 0;
   border-radius: 10px;
   font-size: 8pt;
-  display: inline-block
+  display: inline-block;
 }
 
 #publicaciones h5 {
-
   color: var(--nombre-de-publicador-color);
   width: fit-content;
   display: inline-block;
 }
 
 #publicaciones .borrar {
-
   background-color: rgb(175, 26, 26);
   float: right;
 }
 
 #publicaciones .editar {
-
   background-color: rgb(25, 125, 133);
   float: right;
 }
 
 #publicaciones .editar-field {
-
   width: 100%;
   background-color: var(--base-color);
   border-radius: 10px;
   padding: 10px;
   border: 0;
+  margin-bottom: 35px;
 }
 
-.republicar-btn, .cancelar-btn {
-
-  margin-top: 5px;
+.republicar-btn,
+.cancelar-btn {
+  margin-top: -25px;
   padding: 5px;
   border: 0;
   border-radius: 5px;
@@ -100,7 +89,6 @@
 }
 
 .republicar-btn {
-
   background-color: var(--call-to-action-color);
   padding: 5px;
   border: 0;
@@ -109,7 +97,6 @@
 }
 
 .cancelar-btn {
-
   background-color: var(--part-color);
   border: 1px solid white;
 }
