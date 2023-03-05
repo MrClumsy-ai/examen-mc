@@ -1,14 +1,12 @@
 :root {
-
-  --logo-color: #b98389;
+  --logo-color: #fff;
   --base-color: #1c1e21;
   --navbar-color: #54494b;
   --part-color: #7e8287;
-  --call-to-action-color: #DB2955;
+  --call-to-action-color: #db2955;
 }
 
 * {
-
   margin: 0;
   padding: 0;
   color: white;
@@ -16,25 +14,20 @@
 }
 
 body {
-
   background-color: var(--base-color);
 }
 
 .content {
-
   border-radius: 20px;
   padding: 20px;
   background-color: var(--part-color);
-
 }
 
 .navbar {
-
   background-color: var(--navbar-color);
 }
 
 .navbar-brand {
-
   background-color: var(--logo-color);
   padding: 10px;
   padding-inline: 20px;
@@ -42,6 +35,5 @@ body {
 }
 
 #main {
-
   margin-top: 100px;
 }

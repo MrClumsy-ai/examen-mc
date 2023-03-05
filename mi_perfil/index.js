@@ -1,6 +1,6 @@
 // on page load
 $(document).ready(function () {
-  console.log($("#main").children("center").children());
+  // console.log($("#main").children("center").children());
   $("#main").children("center").prepend(`
   
     <div style="color: green;">test</div>
@@ -8,6 +8,7 @@ $(document).ready(function () {
   `);
 });
 
+// editar perfil
 let editando = false;
 $("#editBtn").click(() => {
   if (!editando) {
@@ -26,8 +27,10 @@ $("#editBtn").click(() => {
     let editandoFoto = false;
     let editandoNombre = false;
     $("#editar-foto").click(function () {
-      if (!editandoFoto && !editandoNombre) {
+      if (!editandoFoto) {
         editandoFoto = true;
+        editandoNombre = false;
+        $("#editar").children("#editar-nombre-div").remove();
         $("#editar").append(`
         <div id="editar-foto-div">
           <form action="/action_page.php">
@@ -53,8 +56,10 @@ $("#editBtn").click(() => {
     });
     // cambiar nombre
     $("#editar-nombre").click(function () {
-      if (!editandoNombre && !editandoFoto) {
+      if (!editandoNombre) {
         editandoNombre = true;
+        editandoFoto = false;
+        $("#editar").children("#editar-foto-div").remove();
         console.log("nuevo nombre...");
         $("#editar").append(`
           <div id="editar-nombre-div">
@@ -69,7 +74,8 @@ $("#editBtn").click(() => {
       $("#nombre-btn").click(function () {
         if (!($("#nombre-field").val() === "")) {
           $("#nombre-de-usuario").text($("#nombre-field").val());
-          $("#editar-nombre-div").remove();
+          $("#editar").remove();
+          editando = false;
           editandoNombre = false;
         } else {
           console.log("no se puede cambiar el nombre a un string vacio");

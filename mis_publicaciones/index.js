@@ -1,7 +1,7 @@
 let id = 0;
 
 // nueva publicacion
-$("#publicar-btn").click(() => {
+$("#publicar-btn").click(function (event) {
   id++;
   if (!($("#publicacion-field").val().trim() == "")) {
     $("#publicaciones").prepend(
@@ -17,6 +17,7 @@ $("#publicar-btn").click(() => {
       </div>`
     );
     $("#publicacion-field").val("");
+    console.log(event);
   }
 });
 

@@ -51,3 +51,13 @@
 #editar .editar-generico {
   background-color: var(--call-to-action-color);
 }
+
+#editar-foto-div #foto-btn {
+  width: 20%;
+  max-width: 100px;
+}
+
+#editar-foto-div #cancelar-foto {
+  width: 20%;
+  max-width: 100px;
+}
