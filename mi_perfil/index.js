@@ -1,13 +1,3 @@
-// on page load
-$(document).ready(function () {
-  // console.log($("#main").children("center").children());
-  $("#main").children("center").prepend(`
-  
-    <div style="color: green;">test</div>
-  
-  `);
-});
-
 // editar perfil
 let editando = false;
 $("#editBtn").click(() => {
@@ -41,13 +31,13 @@ $("#editBtn").click(() => {
         </div>
       `);
       }
-      // ok btn
+      // foto confirmada
       $("#foto-btn").click(function () {
-        console.log($("#foto-de-perfil").attr("src"));
-        console.log($("#img").val());
-        $("#foto-de-perfil").attr("src", $("#img").val());
+        $("#editar").remove();
+        editando = false;
+        editandoFoto = false;
       });
-      // cancelar btn
+      // foto cancelada
       $("#cancelar-foto").click(function () {
         console.log("cancelar foto");
         $("#editar-foto-div").remove();
