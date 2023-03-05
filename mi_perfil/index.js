@@ -1,3 +1,13 @@
+// on page load
+$(document).ready(function () {
+  console.log($("#main").children("center").children());
+  $("#main").children("center").prepend(`
+  
+    <div style="color: green;">test</div>
+  
+  `);
+});
+
 let editando = false;
 $("#editBtn").click(() => {
   if (!editando) {
