@@ -1,5 +1,10 @@
-let id = 0;
+$(document).ready(function () {
+  // agregar publicaciones recientes
+  // $("#publicaciones").prepend(`
+  // `);
+});
 
+let id = 0;
 // nueva publicacion
 $("#publicar-btn").click(function (event) {
   id++;

@@ -22,42 +22,29 @@
   font-weight: bold;
 }
 
-#main button {
-  color: white;
-  background-color: var(--base-color);
-}
-
-#editar input {
+#nueva-publicacion #publicacion-field {
   background-color: var(--base-color);
   border: 0;
   padding: 10px;
-  margin-top: 10px;
   border-radius: 10px;
-  width: 80%;
-  max-width: 500px;
+  width: 100%;
 }
 
-#editar #nombre-btn {
-  width: 20%;
+#nueva-publicacion #publicar-btn {
   background-color: var(--call-to-action-color);
-  max-width: 100px;
+  padding: 10px;
+  border: 0;
+  border-radius: 10px;
 }
 
-#editar #cancelar-nombre {
-  width: 30%;
-  max-width: 150px;
+#info-div {
+  text-align: left;
 }
 
-#editar .editar-generico {
-  background-color: var(--call-to-action-color);
+#publicaciones .content {
+  margin-top: 10px;
 }
 
-#editar-foto-div #foto-btn {
-  width: 20%;
-  max-width: 100px;
-}
-
-#editar-foto-div #cancelar-foto {
-  width: 20%;
-  max-width: 100px;
+#publicaciones .content h5 {
+  color: rgb(255, 175, 1);
 }
