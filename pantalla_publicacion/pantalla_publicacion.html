@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="../general-style.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Co-web - Publicacion especifica...</title>
+  </head>
+  <body>
+    <!-- topbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a
+          class="navbar-brand"
+          href="../pantalla_principal/pantalla_principal.html">
+          <img src="../logo_icon.png" width="30" height="30" />
+          Co-web</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="../pantalla_principal/pantalla_principal.html"
+                >Pantalla principal</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../favoritos/favoritos.html"
+                >Favoritos</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="../mi_perfil/mi_perfil.html" class="nav-link"
+                >Mi perfil</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div id="main" class="container">
+      <h1>si es mio</h1>
+      <div id="${id}" class="content">
+        <h5>${name}</h5>
+        <button class="borrar">borrar</button>
+        <button class="editar">editar</button>
+        <p class="contenido-publicacion">${publicacion-contenido}</p>
+        <div class="acciones-div">
+          <button class="btn btn-dark like-btn">${numLikes} Likes</button>
+          <button class="btn btn-dark comentar-btn">Comenta algo</button>
+        </div>
+      </div>
+      <h1>si es de otro</h1>
+      <div id="${id}" class="content">
+        <h5>${name}</h5>
+        <p class="contenido-publicacion">${publicacion-contenido}</p>
+        <div class="acciones-div">
+          <button class="btn btn-dark like-btn">${numLikes} Likes</button>
+          <button class="btn btn-dark comentar-btn">Comenta algo</button>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- bootstrap -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"></script>
+    <!-- jquery -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+      integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <!-- moment js -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"
+      integrity="sha512-CryKbMe7sjSCDPl18jtJI5DR5jtkUWxPXWaLCst6QjH8wxDexfRJic2WRmRXmstr2Y8SxDDWuBO6CQC6IE4KTA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <!-- sweetalert -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+      integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <!-- local -->
+    <script src="index.js"></script>
+  </body>
+</html>

@@ -1,10 +1,7 @@
 :root {
-  --logo-color: #b98389;
-  --base-color: #1c1e21;
-  --navbar-color: #54494b;
-  --part-color: #444;
-  --call-to-action-color: #db2955;
   --nombre-de-publicador-color: rgb(255, 175, 1);
+  --sin-like-color: #222222;
+  --like-color: var(--call-to-action-color);
 }
 
 #nueva-publicacion input {
@@ -23,6 +20,8 @@
 
 #publicar-btn {
   position: relative;
+  border: 0;
+  border-radius: 10px;
   background-color: var(--call-to-action-color);
   padding: 10px;
   float: right;
@@ -69,7 +68,8 @@
   float: right;
 }
 
-#publicaciones .editar-field {
+#publicaciones .editar-field,
+#comentario-div #comentario-field {
   width: 100%;
   background-color: var(--base-color);
   border-radius: 10px;
@@ -99,4 +99,29 @@
 .cancelar-btn {
   background-color: var(--part-color);
   border: 1px solid white;
+}
+
+.acciones-div {
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #5e5e5e;
+}
+
+.acciones-div button {
+  padding: 10px;
+  background-color: var(--sin-like-color);
+}
+
+.acciones-div .like-btn:hover {
+  background-color: var(--call-to-action-color);
+}
+
+.otros-comentarios {
+
+  padding: 15px;
+}
+
+.otros-comentarios h6 {
+
+  color: var(--nombre-de-publicador-color);
 }

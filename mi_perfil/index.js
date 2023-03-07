@@ -1,9 +1,11 @@
+
+// agregar publicaciones pasadas
 $(document).ready(function () {
-  // agregar publicaciones pasadas
   // $("#publicaciones").prepend(`
   // `);
 });
 
+// nueva publicacion
 $("#publicar-btn").click(function (e) {
   if ($("#publicacion-field").val().trim() === "") {
     alert("No se puede publicar una publicacion vacia");
@@ -42,8 +44,8 @@ $("#info-personal").click(function () {
       <ul>
         <li>Nombre: Eduardo Menchaca Cano</li>
         <li>Matricula: 2077725</li>
-        <li>Estudiado: Instituto Regiomontano Cumbres</li>
-        <li>Pasatiempos: Videojuegos, Musica, Codigos</li>
+        <li>Estudiado: Instituto Regiomontano Cumbres, UANL FIME</li>
+        <li>Pasatiempos: Videojuegos, Musica, Codificar, no usar los acentos en las palabras</li>
         <li>Trabajos: Forbidden Coffee Cafeteria</li>
         <li>Conocimientos: C, C++, C#, HTML, CSS, JavaScript, Java, Python, Rust</li>
       </ul>

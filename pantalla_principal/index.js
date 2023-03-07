@@ -4,26 +4,35 @@ $(document).ready(function () {
   // `);
 });
 
-let id = 0;
+let id = 0; // quitar esto luego
 // nueva publicacion
 $("#publicar-btn").click(function (event) {
-  id++;
+  let numLikes = 0;
+  let numComenarios = 0;
+  id++; // quitar esto luego
+
   if (!($("#publicacion-field").val().trim() == "")) {
+    let name = "Joe biden" // quitar esto luego
     $("#publicaciones").prepend(
       `<div id="${id}" class="content">
         <h5>
-          Dwayne Johnson
+          ${name}
         </h5>
         <button class="borrar">borrar</button>
         <button class="editar">editar</button>
         <p class="contenido-publicacion">
           ${$("#publicacion-field").val()}
         </p>
+        <div class="acciones-div">
+          <button class="btn btn-dark like-btn">${numLikes} Likes</button>
+          <button class="btn btn-dark comentar-btn">Comenta algo</button>
+          <button class="btn btn-info mostrar-comentarios">Mostrar todos los comentarios (${numComenarios})</button>
+        </div>
       </div>`
     );
     $("#publicacion-field").val("");
-    console.log(event);
   }
+  event.preventDefault()
 });
 
 // borrar publicacion
@@ -85,3 +94,63 @@ $("#publicaciones").on("click", ".editar", function () {
     });
   }
 });
+
+// like
+let liked = false;
+let likes = 0;
+$("#publicaciones").on("click", ".like-btn", function () {
+  // dar like
+  if (!liked) {
+    liked = true;
+    likes++;
+    $(this).text(`${likes} Likes`);
+    $(this).css("background-color", "var(--like-color)");
+  }
+  // quitar like
+  else {
+    liked = false;
+    likes--;
+    $(this).text(`${likes} Likes`);
+    $(this).css("background-color", "var(--sin-like-color)");
+  }
+});
+
+// dar comentario
+let comentarios = 0;
+let comentando = false;
+$("#publicaciones").on("click", ".comentar-btn", function () {
+  if (!comentando) {
+    comentando = true;
+    console.log("comentando...");
+    $(this).siblings(".mostrar-comentarios").after(`
+    
+      <div id="comentario-div" class="mt-3">
+        <form>
+          <input id="comentario-field" type="text" placeholder="comenta algo...">
+          <button id="comentar-btn" type="submit">Comentar</button>
+          <button id="cancelar-btn" type="submit">Cancelar</button>
+        </form>
+      </div>
+
+    `);
+  }
+  $("#comentar-btn").click(function (e) {
+    if (!($("#comentario-field").val().trim() === "")) {
+      comentando = false;
+      console.log("comentado!");
+      $("#comentario-div").remove();
+    }
+    e.preventDefault();
+  });
+  $("#cancelar-btn").click(function (e) {
+    comentando = false;
+    console.log("cancelado");
+    $("#comentario-div").remove();
+  });
+});
+
+// mostrar mas comentarios (redirige a pantalla_publicacion.html)
+$("#publicaciones").on("click", ".mostrar-comentarios", function () {
+
+  window.location.href = "../pantalla_publicacion/pantalla_publicacion.html"
+})
