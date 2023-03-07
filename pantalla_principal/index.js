@@ -12,7 +12,7 @@ $("#publicar-btn").click(function (event) {
   id++; // quitar esto luego
 
   if (!($("#publicacion-field").val().trim() == "")) {
-    let name = "Joe biden" // quitar esto luego
+    let name = "Joe biden"; // quitar esto luego
     $("#publicaciones").prepend(
       `<div id="${id}" class="content">
         <h5>
@@ -32,7 +32,7 @@ $("#publicar-btn").click(function (event) {
     );
     $("#publicacion-field").val("");
   }
-  event.preventDefault()
+  event.preventDefault();
 });
 
 // borrar publicacion
@@ -128,7 +128,7 @@ $("#publicaciones").on("click", ".comentar-btn", function () {
         <form>
           <input id="comentario-field" type="text" placeholder="comenta algo...">
           <button id="comentar-btn" type="submit">Comentar</button>
-          <button id="cancelar-btn" type="submit">Cancelar</button>
+          <button id="cancelar-btn" type="button">Cancelar</button>
         </form>
       </div>
 
@@ -146,11 +146,11 @@ $("#publicaciones").on("click", ".comentar-btn", function () {
     comentando = false;
     console.log("cancelado");
     $("#comentario-div").remove();
+    e.preventDefault();
   });
 });
 
 // mostrar mas comentarios (redirige a pantalla_publicacion.html)
 $("#publicaciones").on("click", ".mostrar-comentarios", function () {
-
-  window.location.href = "../pantalla_publicacion/pantalla_publicacion.html"
-})
+  window.location.href = "../pantalla_publicacion/pantalla_publicacion.html";
+});
