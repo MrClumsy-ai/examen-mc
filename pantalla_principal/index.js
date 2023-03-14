@@ -1,10 +1,12 @@
 const MATRICULA = 2077725;
 const NOMBRE = "Eduardo Menchaca";
-const LLAVE_SECRETA = "hi";
+const LLAVE_SECRETA = "3246ad77-4eb8-4fc8-a9a1-135901658e3b";
 $(document).ready(function () {
   agregarPublicaciones();
 });
 
+// jala
+// perfecto
 function agregarPublicaciones() {
   $.ajax({
     url: "https://ex2r.fime.uanl.mx/api/Publicaciones/all/" + MATRICULA,
@@ -14,22 +16,45 @@ function agregarPublicaciones() {
   })
     .done(function (result) {
       result.forEach((element) => {
-        $("#publicaciones").append(`
+        if (element.idUsuario == MATRICULA) {
+          $("#publicaciones").append(`
       
-        <div id="${element.idPublicacion}" class="content">
-          <h5 class="${element.idUsuario}">${element.nombre}
-            <span>${element.idUsuario}</span>
-          </h5>
-          <h6>${element.fechaCreacion}</h6>
-          <p class="contenido-publicacion">${element.contenido}</p>
-          <div class="acciones-div">
-            <button class="btn btn-dark like-btn">${element.cantidadLikes} likes</button>
-            <button class="btn btn-dark comentar-btn">comenta algo</button>
-            <button class="btn btn-info mostrar-comentarios">Mostrar todos los comentarios(${element.cantidadComentarios})</button>
-          </div>
-        </div>
+            <div id="${element.idPublicacion}" class="content">
+              <h5 class="${element.idUsuario}">${element.nombre}
+                <span>${element.idUsuario}</span>
+              </h5>
+              <h6>${element.fechaCreacion}</h6>
+              <button class="borrar">borrar</button>
+              <button class="editar">editar</button>
+              <p class="contenido-publicacion">${element.contenido}</p>
+              <div class="acciones-div">
+               <button class="btn btn-dark like-btn ${element.likePropio}"id="${element.likePropio}">${element.cantidadLikes} likes</button>
+                <button class="btn btn-dark comentar-btn">comenta algo</button>
+                <button class="btn btn-info mostrar-comentarios">Mostrar todos los comentarios(${element.cantidadComentarios})</button>
+              </div>
+            </div>
       
-      `);
+          `);
+        } else {
+          $("#publicaciones").append(`
+           <div id="${element.idPublicacion}" class="content">
+             <h5 class="${element.idUsuario}">${element.nombre}
+               <span>${element.idUsuario}</span>
+             </h5>
+             <h6>${element.fechaCreacion}</h6>
+             <p class="contenido-publicacion">${element.contenido}</p>
+             <div class="acciones-div">
+               <button class="btn btn-dark like-btn ${element.likePropio}"id="${element.likePropio}">${element.cantidadLikes} likes</button>
+               <button class="btn btn-dark comentar-btn">comenta algo</button>
+               <button class="btn btn-info mostrar-comentarios">Mostrar todos los comentarios(${element.cantidadComentarios})</button>
+             </div>
+           </div>
+         `);
+        }
+        if (element.likePropio) {
+          // btn.css("background-color", "var(--like-color)");
+          $("#true").css("background-color", "var(--like-color)");
+        }
       });
     })
     .fail(function (error) {
@@ -37,10 +62,9 @@ function agregarPublicaciones() {
     });
 }
 
-let idPublicacion = 0;
+let idPublicacion = 9;
 // nueva publicacion
-// unauthorized
-// llave secreta ???????????????????????????????????????/
+// perfecto
 $("#publicar-btn").click(function (event) {
   let contenido = $("#publicacion-field").val().trim();
 
@@ -53,54 +77,18 @@ $("#publicar-btn").click(function (event) {
       data: JSON.stringify({
         idPublicacion: idPublicacion,
         idUsuario: MATRICULA,
-        llave_Secreta: MATRICULA.toString,
+        llave_Secreta: LLAVE_SECRETA,
         contenido: contenido,
       }),
       contentType: "application/json",
     })
       .done(function (result) {
-        // $("#publicaciones").prepend(
-        //   `<div id=${idPublicacion} class="content">
-        //     <h5 id="${MATRICULA}">
-        //       ${NOMBRE}
-        //       <span>${MATRICULA}</span>
-        //     </h5>
-        //     <button class="borrar">borrar</button>
-        //     <button class="editar">editar</button>
-        //     <p class="contenido-publicacion">
-        //       ${contenido}
-        //     </p>
-        //     <div class="acciones-div">
-        //       <button class="btn btn-dark like-btn">0 Likes</button>
-        //       <button class="btn btn-dark comentar-btn">Comenta algo</button>
-        //       <button class="btn btn-info mostrar-comentarios">Mostrar todos los comentarios (0)</button>
-        //     </div>
-        //   </div>`
-        // );
+        location.reload();
       })
       .fail(function (a, b, c) {
         console.log(b, c);
       });
     // borrar esto luego
-    $("#publicaciones").prepend(
-      `<div id=${idPublicacion} class="content">
-        <h5 id="${MATRICULA}">
-          ${NOMBRE}
-          <span>${MATRICULA}</span>
-        </h5>
-        <button class="borrar">borrar</button>
-        <button class="editar">editar</button>
-        <p class="contenido-publicacion">
-          ${contenido}
-        </p>
-        <div class="acciones-div">
-          <button class="btn btn-dark like-btn">0 Likes</button>
-          <button class="btn btn-dark comentar-btn">Comenta algo</button>
-          <button class="btn btn-info mostrar-comentarios">Mostrar todos los comentarios (0)</button>
-        </div>
-      </div>`
-    );
-
     $("#publicacion-field").val("");
     idPublicacion++;
   }
@@ -108,10 +96,11 @@ $("#publicar-btn").click(function (event) {
 });
 
 // borrar publicacion
-// unauthorized
+// perfecto
 $("#publicaciones").on("click", ".borrar", function () {
   let idPublicacion = $(this).closest("div").attr("id");
   let contenido = $(this).siblings("p").text().trim();
+  let publicacion = $(this).parent();
   $.ajax({
     url: "https://ex2r.fime.uanl.mx/api/Publicaciones/" + idPublicacion,
     method: "DELETE",
@@ -125,7 +114,7 @@ $("#publicaciones").on("click", ".borrar", function () {
   })
     .done(function (result) {
       console.log("yay");
-      $(this).closest("div").remove();
+      publicacion.remove();
     })
     .fail(function (a, b, c) {
       console.log(b, c);
@@ -134,7 +123,7 @@ $("#publicaciones").on("click", ".borrar", function () {
 
 let editando = false;
 // editar publicacion
-// unauthorized
+// perfecto
 $("#publicaciones").on("click", ".editar", function () {
   // hace para que solo salga 1 caja de editar
   if (!editando) {
@@ -211,27 +200,67 @@ $("#publicaciones").on("click", ".editar", function () {
 });
 
 // like
-// unauthorized
+// perfecto
 $("#publicaciones").on("click", ".like-btn", function () {
   let idPublicacion = $(this).parent().parent().attr("id");
   let idUsuario = $(this).parent().parent().children("h5").attr("class");
-  $.ajax({
-    url: "https://ex2r.fime.uanl.mx/api/Likes",
-    method: "POST",
-    data: JSON.stringify({
-      idPUblicacion: idPublicacion,
-      idUsuario: idUsuario,
-      llave_Secreta: LLAVE_SECRETA,
-    }),
-    contentType: "application/json",
-  })
-    .done(function (result) {
-      $(this).css("background-color", "var(--like-color)");
-      console.log("yay");
+  let btn = $(this);
+  console.log(btn.hasClass("true"));
+  // not liked
+  if (btn.hasClass("true")) {
+    console.log("quitando like");
+    $.ajax({
+      url: "https://ex2r.fime.uanl.mx/api/Likes",
+      method: "DELETE",
+      data: JSON.stringify({
+        idPUblicacion: idPublicacion,
+        idUsuario: idUsuario,
+        llave_Secreta: LLAVE_SECRETA,
+      }),
+      contentType: "application/json",
     })
-    .fail(function (a, b, c) {
-      console.log(b, c);
-    });
+      .done(function (result) {
+        let likes = btn.text().slice(0, btn.text().indexOf("l"));
+        console.log(btn.attr("id"));
+        likes--;
+        console.log(likes);
+        btn.css("background-color", "black");
+        btn.removeClass("true");
+        btn.addClass("false");
+        btn.text(likes + " likes");
+        console.log("yay");
+      })
+      .fail(function (a, b, c) {
+        console.log(b, c);
+      });
+  } else {
+    console.log("poniendo like");
+    $.ajax({
+      url: "https://ex2r.fime.uanl.mx/api/Likes",
+      method: "POST",
+      data: JSON.stringify({
+        idPUblicacion: idPublicacion,
+        idUsuario: idUsuario,
+        llave_Secreta: LLAVE_SECRETA,
+      }),
+      contentType: "application/json",
+    })
+      .done(function (result) {
+        let likes = btn.text().slice(0, btn.text().indexOf("l"));
+        console.log(btn.attr("id"));
+        likes++;
+        console.log(likes);
+        btn.removeClass("false");
+        btn.addClass("true");
+        btn.attr("id");
+        btn.css("background-color", "var(--like-color)");
+        btn.text(likes + " likes");
+        console.log("yay");
+      })
+      .fail(function (a, b, c) {
+        console.log(b, c);
+      });
+  }
   // if (!liked) {
   //   liked = true;
   //   likes++;
@@ -247,10 +276,10 @@ $("#publicaciones").on("click", ".like-btn", function () {
   // }
 });
 
-// unauthorized
 // dar comentario
-let idComentario = 0;
-function comentar(contenido) {
+let idComentario = 300;
+function comentar(contenido, idPublicacion) {
+  console.log(idComentario, idPublicacion, MATRICULA, LLAVE_SECRETA, contenido);
   $.ajax({
     url: "https://ex2r.fime.uanl.mx/api/Comentarios",
     method: "POST",
@@ -258,15 +287,21 @@ function comentar(contenido) {
       idComentario: idComentario,
       idPublicacion: idPublicacion,
       idUsuario: MATRICULA,
-      llave_Secreta: MATRICULA.toString,
+      llave_Secreta: LLAVE_SECRETA,
       contenido: contenido,
     }),
     contentType: "application/json",
-  });
+  })
+    .done(function (result) {
+      console.log("ajax jalo (comentar)");
+    })
+    .fail(function (a, b, c) {
+      console.log(b, c);
+    });
   idComentario++;
 }
 
-let comentarios = 0;
+// jala perfectamente
 let comentando = false;
 $("#publicaciones").on("click", ".comentar-btn", function () {
   if (!comentando) {
@@ -287,12 +322,19 @@ $("#publicaciones").on("click", ".comentar-btn", function () {
   }
   $("#comentar-btn").click(function (e) {
     if (!($("#comentario-field").val().trim() === "")) {
-      comentar($("#comentario-field").val().trim());
+      let contenido = $("#comentario-field").val().trim();
+      let idPublicacion = $(this)
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .attr("id");
+      console.log(contenido, idPublicacion);
+      comentar(contenido, idPublicacion);
       comentando = false;
       console.log("comentado!");
       $("#comentario-div").remove();
     }
-    e.preventDefault();
   });
   $("#cancelar-btn").click(function (e) {
     comentando = false;

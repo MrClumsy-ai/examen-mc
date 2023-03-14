@@ -1,4 +1,120 @@
 #main {
-
   padding: 20px;
+}
+
+:root {
+  --sin-like-color: #222222;
+  --like-color: var(--call-to-action-color);
+}
+
+#publicacion-field {
+  position: relative;
+  background-color: var(--base-color);
+  padding: 20px;
+  width: 100%;
+  color: white;
+  z-index: 0;
+  border: 0;
+  border-radius: 10px;
+}
+
+#publicar-btn {
+  position: relative;
+  border: 0;
+  border-radius: 10px;
+  background-color: var(--call-to-action-color);
+  padding: 10px;
+  float: right;
+  margin-top: -54px;
+  margin-right: 10px;
+  z-index: 1;
+}
+
+#publicaciones {
+  padding: 0;
+}
+
+#publicaciones h5 {
+  color: var(--nombre-de-publicador-color);
+}
+
+#publicaciones .content {
+  margin-top: 15px;
+}
+
+#publicaciones h5 {
+  color: var(--nombre-de-publicador-color);
+  width: fit-content;
+  display: inline-block;
+}
+
+#publicaciones .borrar,
+#publicaciones .editar {
+  float: right;
+  border: 0;
+  border-radius: 10px;
+  padding: 5px;
+  margin-inline: 5px;
+}
+
+#publicaciones .borrar {
+  background-color: rgb(175, 26, 26);
+}
+
+#publicaciones .editar {
+  background-color: rgb(25, 125, 133);
+}
+
+.acciones-div {
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #5e5e5e;
+}
+
+.acciones-div button {
+  border-radius: 10px;
+  border: 0;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+#comentario-field {
+  background-color: var(--base-color);
+  padding: 8px;
+  border: 0;
+  border-radius: 8px;
+  width: 100%;
+}
+
+#comentario-div button,
+.republicar-btn,
+.cancelar-btn {
+  border-radius: 10px;
+  margin-top: 8px;
+  padding: 5px;
+  border: 0;
+}
+
+#comentar-btn,
+.republicar-btn {
+  background-color: var(--call-to-action-color);
+}
+
+#cancelar-btn,
+.cancelar-btn {
+  background-color: var(--base-color);
+}
+
+#publicaciones .editar-field {
+  margin-top: 10px;
+  width: 100%;
+  background-color: var(--base-color);
+  border-radius: 10px;
+  padding: 10px;
+  border: 0;
+}
+
+h5 span {
+  color: rgba(255, 255, 255, 50%);
+  font-size: 10pt;
 }
