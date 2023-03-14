@@ -1,8 +1,63 @@
-// agregar publicaciones pasadas
+const MATRICULA = 2077725;
+const NOMBRE = "Eduardo Menchaca";
+const LLAVE_SECRETA = "hi";
+// agregar las publicaciones
 $(document).ready(function () {
-  // $("#publicaciones").prepend(`
-  // `);
+  agregarPublicaciones();
 });
+
+function agregarPublicaciones() {
+  $.ajax({
+    url:
+      "https://ex2r.fime.uanl.mx/api/Publicaciones/all/" +
+      MATRICULA +
+      "/" +
+      MATRICULA,
+    type: "GET",
+    datatype: "json",
+    crossdomain: true,
+  })
+    .done(function (result) {
+      result.forEach((element) => {
+        $("#publicaciones").append(`
+      
+        <div id="${element.idPublicacion}" class="content">
+          <h5 class="${element.idUsuario}">${element.nombre}
+            <span>${element.idUsuario}</span>
+          </h5>
+          <h6>${element.fechaCreacion}</h6>
+          <p class="contenido-publicacion">${element.contenido}</p>
+          <div class="acciones-div">
+            <button class="btn btn-dark like-btn">${element.cantidadLikes} likes</button>
+            <button class="btn btn-dark comentar-btn">comenta algo</button>
+            <button class="btn btn-dark mostrar-comentarios">Mostrar todos los comentarios(${element.cantidadComentarios})</button>
+          </div>
+        </div>
+      
+      `);
+      });
+    })
+    .fail(function (error) {
+      console.log("error");
+    });
+}
+
+// unauthorized?!?!?!
+let idPublicacion = 0;
+function publicar(contenido) {
+  $.ajax({
+    url: "https://ex2r.fime.uanl.mx/api/Publicaciones",
+    method: "POST",
+    data: JSON.stringify({
+      idPublicacion: idPublicacion,
+      idUsuario: MATRICULA,
+      llave_Secreta: MATRICULA.toString,
+      contenido: contenido,
+    }),
+    contentType: "application/json",
+  });
+  idPublicacion++;
+}
 
 // nueva publicacion
 $("#publicar-btn").click(function (e) {
@@ -12,14 +67,26 @@ $("#publicar-btn").click(function (e) {
   // publicacion valida...
   else {
     console.log($("#publicacion-field").val().trim());
-    let nombre = "edy";
+
+    let contenido = $("#publicacion-field").val().trim();
+    publicar($("#publicacion-field").val().trim());
     $("#publicaciones").prepend(`
     
-      <div class="content">
-        <h5>${nombre}</h5>
-        <p>
-          ${$("#publicacion-field").val().trim()}
+      <div id=${idPublicacion} class="content">
+        <h5 id="${MATRICULA}">
+          ${NOMBRE}
+          <span>${MATRICULA}</span>
+        </h5>
+        <button class="borrar">borrar</button>
+        <button class="editar">editar</button>
+        <p class="contenido-publicacion">
+          ${contenido}
         </p>
+        <div class="acciones-div">
+          <button class="btn btn-dark like-btn">0 Likes</button>
+          <button class="btn btn-dark comentar-btn">Comenta algo</button>
+          <button class="btn btn-info mostrar-comentarios">Mostrar todos los comentarios (0)</button>
+        </div>
       </div>
     
     `);
