@@ -4,8 +4,8 @@ h5 {
   display: inline-block;
 }
 
-.like-btn, .comentar-btn {
-
+.like-btn,
+.comentar-btn {
   border: 0;
 }
 
@@ -14,7 +14,7 @@ h5 {
   float: right;
   border: 0;
   border-radius: 10px;
-  padding: 3px;
+  padding: 5px;
   margin-inline: 5px;
 }
 
@@ -33,33 +33,27 @@ h5 {
 }
 
 .acciones-div button {
-
   border-radius: 10px;
 }
 
 #comentario-field {
-
   background-color: var(--base-color);
   padding: 8px;
   border: 0;
   border-radius: 8px;
   width: 100%;
-  
 }
 
 #comentario-div button {
-
   margin-top: 8px;
   padding: 5px;
   border: 0;
 }
 
 #comentar-btn {
-
   background-color: var(--call-to-action-color);
 }
 
 #cancelar-btn {
-
   background-color: var(--base-color);
 }

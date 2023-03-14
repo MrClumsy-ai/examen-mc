@@ -1,4 +1,3 @@
-
 // agregar publicaciones pasadas
 $(document).ready(function () {
   // $("#publicaciones").prepend(`
@@ -24,7 +23,7 @@ $("#publicar-btn").click(function (e) {
       </div>
     
     `);
-    $("#publicacion-field").val("   ");
+    $("#publicacion-field").val("");
   }
 
   e.preventDefault();

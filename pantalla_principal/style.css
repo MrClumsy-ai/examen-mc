@@ -1,12 +1,6 @@
 :root {
-  --nombre-de-publicador-color: rgb(255, 175, 1);
   --sin-like-color: #222222;
   --like-color: var(--call-to-action-color);
-}
-
-#nueva-publicacion input {
-  border: 0;
-  border-radius: 10px;
 }
 
 #publicacion-field {
@@ -16,6 +10,8 @@
   width: 100%;
   color: white;
   z-index: 0;
+  border: 0;
+  border-radius: 10px;
 }
 
 #publicar-btn {
@@ -30,26 +26,16 @@
   z-index: 1;
 }
 
-#nueva-publicacion {
-  margin-top: 100px;
-}
-
 #publicaciones {
   padding: 0;
 }
 
-#publicaciones .content {
-  margin-top: 10px;
-  margin-bottom: 10px;
+#publicaciones h5 {
+  color: var(--nombre-de-publicador-color);
 }
 
-#publicaciones button {
-  color: white;
-  padding: 5px;
-  border: 0;
-  border-radius: 10px;
-  font-size: 8pt;
-  display: inline-block;
+#publicaciones .content {
+  margin-top: 15px;
 }
 
 #publicaciones h5 {
@@ -58,47 +44,21 @@
   display: inline-block;
 }
 
+#publicaciones .borrar,
+#publicaciones .editar {
+  float: right;
+  border: 0;
+  border-radius: 10px;
+  padding: 5px;
+  margin-inline: 5px;
+}
+
 #publicaciones .borrar {
   background-color: rgb(175, 26, 26);
-  float: right;
 }
 
 #publicaciones .editar {
   background-color: rgb(25, 125, 133);
-  float: right;
-}
-
-#publicaciones .editar-field,
-#comentario-div #comentario-field {
-  width: 100%;
-  background-color: var(--base-color);
-  border-radius: 10px;
-  padding: 10px;
-  border: 0;
-  margin-bottom: 35px;
-}
-
-.republicar-btn,
-.cancelar-btn {
-  margin-top: -25px;
-  padding: 5px;
-  border: 0;
-  border-radius: 5px;
-  float: right;
-  margin-left: 5px;
-}
-
-.republicar-btn {
-  background-color: var(--call-to-action-color);
-  padding: 5px;
-  border: 0;
-  border-radius: 5px;
-  float: right;
-}
-
-.cancelar-btn {
-  background-color: var(--part-color);
-  border: 1px solid white;
 }
 
 .acciones-div {
@@ -108,20 +68,44 @@
 }
 
 .acciones-div button {
-  padding: 10px;
-  background-color: var(--sin-like-color);
+  border-radius: 10px;
+  border: 0;
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
 
-.acciones-div .like-btn:hover {
+#comentario-field {
+  background-color: var(--base-color);
+  padding: 8px;
+  border: 0;
+  border-radius: 8px;
+  width: 100%;
+}
+
+#comentario-div button,
+.republicar-btn,
+.cancelar-btn {
+  border-radius: 10px;
+  margin-top: 8px;
+  padding: 5px;
+  border: 0;
+}
+
+#comentar-btn,
+.republicar-btn {
   background-color: var(--call-to-action-color);
 }
 
-.otros-comentarios {
-
-  padding: 15px;
+#cancelar-btn,
+.cancelar-btn {
+  background-color: var(--base-color);
 }
 
-.otros-comentarios h6 {
-
-  color: var(--nombre-de-publicador-color);
+#publicaciones .editar-field {
+  margin-top: 10px;
+  width: 100%;
+  background-color: var(--base-color);
+  border-radius: 10px;
+  padding: 10px;
+  border: 0;
 }
