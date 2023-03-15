@@ -58,7 +58,7 @@ function agregarPublicaciones() {
         }
         if (element.likePropio) {
           // btn.css("background-color", "var(--like-color)");
-          $("#true").css("background-color", "var(--like-color)");
+          $(".true").css("background-color", "var(--like-color)");
         }
       });
     })
