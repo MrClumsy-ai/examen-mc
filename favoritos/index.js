@@ -26,9 +26,9 @@ function agregarPublicaciones() {
               <h5 class="${element.idUsuario}">${element.nombre}
                 <span>${element.idUsuario}</span>
               </h5>
-              <h6>${fechaCreacion}</h6>
               <button class="borrar">borrar</button>
               <button class="editar">editar</button>
+              <h6>${fechaCreacion}</h6>
               <p class="contenido-publicacion">${element.contenido}</p>
               <div class="acciones-div">
                <button class="btn btn-dark like-btn ${element.likePropio}"id="${element.likePropio}">${element.cantidadLikes} likes</button>
@@ -55,8 +55,8 @@ function agregarPublicaciones() {
          `);
         }
         if (element.likePropio) {
-          // btn.css("background-color", "var(--like-color)");
-          $("#true").css("background-color", "var(--like-color)");
+          console.log($(".true"));
+          $(".true").css("background-color", "var(--like-color)");
         }
       });
     })
