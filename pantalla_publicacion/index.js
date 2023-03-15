@@ -21,6 +21,10 @@ function agregarPublicacion() {
     crossdomain: true,
   })
     .done(function (element) {
+      let textoFecha = element.fechaCreacion;
+      let fechaCreacion = moment(textoFecha);
+      fechaCreacion.locale("es");
+      fechaCreacion = fechaCreacion.fromNow();
       if (element.idUsuario == MATRICULA) {
         $("#publicaciones").append(`
       
@@ -28,7 +32,7 @@ function agregarPublicacion() {
               <h5 class="${element.idUsuario}">${element.nombre}
                 <span>${element.idUsuario}</span>
               </h5>
-              <h6>${element.fechaCreacion}</h6>
+              <h6>${fechaCreacion}</h6>
               <button class="borrar">borrar</button>
               <button class="editar">editar</button>
               <p class="contenido-publicacion">${element.contenido}</p>
@@ -45,7 +49,7 @@ function agregarPublicacion() {
              <h5 class="${element.idUsuario}">${element.nombre}
                <span>${element.idUsuario}</span>
              </h5>
-             <h6>${element.fechaCreacion}</h6>
+             <h6>${fechaCreacion}</h6>
              <p class="contenido-publicacion">${element.contenido}</p>
              <div class="acciones-div">
                <button class="btn btn-dark like-btn ${element.likePropio}"id="${element.likePropio}">${element.cantidadLikes} likes</button>
@@ -76,6 +80,11 @@ function agregarComentarios() {
   })
     .done(function (result) {
       result.forEach((element) => {
+        let textoFecha = element.fechaCreacion;
+        let fechaCreacion = moment(textoFecha);
+        fechaCreacion.locale("es");
+        fechaCreacion = fechaCreacion.fromNow();
+
         if (element.idUsuario == idSolicitante) {
           // el id de comentario esta en el p, hijo del div content
           $("#main").append(`
@@ -86,7 +95,7 @@ function agregarComentarios() {
               </h5>
               <button class="borrar">borrar</button>
               <button class="editar">editar</button>
-              <h6>${element.fechaCreacion}</h6>
+              <h6>${fechaCreacion}</h6>
               <p id="${element.idComentario}" class="contenido-publicacion">${element.contenido}</p>
             </div>
           `);

@@ -14,6 +14,11 @@ function agregarPublicaciones() {
   })
     .done(function (result) {
       result.forEach((element) => {
+        let textoFecha = element.fechaCreacion;
+        let fechaCreacion = moment(textoFecha);
+        fechaCreacion.locale("es");
+        fechaCreacion = fechaCreacion.fromNow();
+
         if (element.idUsuario == MATRICULA) {
           $("#publicaciones").append(`
       
@@ -21,7 +26,7 @@ function agregarPublicaciones() {
               <h5 class="${element.idUsuario}">${element.nombre}
                 <span>${element.idUsuario}</span>
               </h5>
-              <h6>${element.fechaCreacion}</h6>
+              <h6>${fechaCreacion}</h6>
               <button class="borrar">borrar</button>
               <button class="editar">editar</button>
               <p class="contenido-publicacion">${element.contenido}</p>
@@ -39,7 +44,7 @@ function agregarPublicaciones() {
              <h5 class="${element.idUsuario}">${element.nombre}
                <span>${element.idUsuario}</span>
              </h5>
-             <h6>${element.fechaCreacion}</h6>
+             <h6>${fechaCreacion}</h6>
              <p class="contenido-publicacion">${element.contenido}</p>
              <div class="acciones-div">
                <button class="btn btn-dark like-btn ${element.likePropio}"id="${element.likePropio}">${element.cantidadLikes} likes</button>

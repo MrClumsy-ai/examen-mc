@@ -19,22 +19,33 @@ function agregarPublicaciones() {
   })
     .done(function (result) {
       result.forEach((element) => {
+        let textoFecha = element.fechaCreacion;
+        let fechaCreacion = moment(textoFecha);
+        fechaCreacion.locale("es");
+        fechaCreacion = fechaCreacion.fromNow();
+
         $("#publicaciones").append(`
       
-        <div id="${element.idPublicacion}" class="content">
-          <h5 class="${element.idUsuario}">${element.nombre}
-            <span>${element.idUsuario}</span>
-          </h5>
-          <h6>${element.fechaCreacion}</h6>
-          <p class="contenido-publicacion">${element.contenido}</p>
-          <div class="acciones-div">
-            <button class="btn btn-dark like-btn">${element.cantidadLikes} likes</button>
-            <button class="btn btn-dark comentar-btn">comenta algo</button>
-            <button class="btn btn-dark mostrar-comentarios">Mostrar todos los comentarios(${element.cantidadComentarios})</button>
-          </div>
-        </div>
+            <div id="${element.idPublicacion}" class="content">
+              <h5 class="${element.idUsuario}">${element.nombre}
+                <span>${element.idUsuario}</span>
+              </h5>
+              <button class="borrar">borrar</button>
+              <button class="editar">editar</button>
+              <h6>${fechaCreacion}</h6>
+              <p class="contenido-publicacion">${element.contenido}</p>
+              <div class="acciones-div">
+               <button class="btn btn-dark like-btn ${element.likePropio}"id="${element.likePropio}">${element.cantidadLikes} likes</button>
+                <button class="btn btn-dark comentar-btn">comenta algo</button>
+                <button class="btn btn-info mostrar-comentarios">Mostrar todos los comentarios(${element.cantidadComentarios})</button>
+              </div>
+            </div>
       
       `);
+        if (element.likePropio) {
+          console.log($(".true"));
+          $(".true").css("background-color", "var(--like-color)");
+        }
       });
     })
     .fail(function (error) {

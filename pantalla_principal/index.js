@@ -16,6 +16,11 @@ function agregarPublicaciones() {
   })
     .done(function (result) {
       result.forEach((element) => {
+        let textoFecha = element.fechaCreacion;
+        let fechaCreacion = moment(textoFecha);
+        fechaCreacion.locale("es");
+        fechaCreacion = fechaCreacion.fromNow();
+
         if (element.idUsuario == MATRICULA) {
           $("#publicaciones").append(`
       
@@ -23,7 +28,7 @@ function agregarPublicaciones() {
               <h5 class="${element.idUsuario}">${element.nombre}
                 <span>${element.idUsuario}</span>
               </h5>
-              <h6>${element.fechaCreacion}</h6>
+              <h6>${fechaCreacion}</h6>
               <button class="borrar">borrar</button>
               <button class="editar">editar</button>
               <p class="contenido-publicacion">${element.contenido}</p>
@@ -41,7 +46,7 @@ function agregarPublicaciones() {
              <h5 class="${element.idUsuario}">${element.nombre}
                <span>${element.idUsuario}</span>
              </h5>
-             <h6>${element.fechaCreacion}</h6>
+             <h6>${fechaCreacion}</h6>
              <p class="contenido-publicacion">${element.contenido}</p>
              <div class="acciones-div">
                <button class="btn btn-dark like-btn ${element.likePropio}"id="${element.likePropio}">${element.cantidadLikes} likes</button>
@@ -205,7 +210,7 @@ $("#publicaciones").on("click", ".like-btn", function () {
   let idPublicacion = $(this).parent().parent().attr("id");
   let idUsuario = $(this).parent().parent().children("h5").attr("class");
   let btn = $(this);
-  console.log(btn.hasClass("true"));
+  console.log(idPublicacion);
   // not liked
   if (btn.hasClass("true")) {
     console.log("quitando like");
@@ -213,17 +218,15 @@ $("#publicaciones").on("click", ".like-btn", function () {
       url: "https://ex2r.fime.uanl.mx/api/Likes",
       method: "DELETE",
       data: JSON.stringify({
-        idPUblicacion: idPublicacion,
-        idUsuario: idUsuario,
+        idPublicacion: idPublicacion,
+        idUsuario: MATRICULA,
         llave_Secreta: LLAVE_SECRETA,
       }),
       contentType: "application/json",
     })
       .done(function (result) {
         let likes = btn.text().slice(0, btn.text().indexOf("l"));
-        console.log(btn.attr("id"));
         likes--;
-        console.log(likes);
         btn.css("background-color", "black");
         btn.removeClass("true");
         btn.addClass("false");
@@ -239,17 +242,15 @@ $("#publicaciones").on("click", ".like-btn", function () {
       url: "https://ex2r.fime.uanl.mx/api/Likes",
       method: "POST",
       data: JSON.stringify({
-        idPUblicacion: idPublicacion,
-        idUsuario: idUsuario,
+        idPublicacion: idPublicacion,
+        idUsuario: MATRICULA,
         llave_Secreta: LLAVE_SECRETA,
       }),
       contentType: "application/json",
     })
       .done(function (result) {
         let likes = btn.text().slice(0, btn.text().indexOf("l"));
-        console.log(btn.attr("id"));
         likes++;
-        console.log(likes);
         btn.removeClass("false");
         btn.addClass("true");
         btn.attr("id");
