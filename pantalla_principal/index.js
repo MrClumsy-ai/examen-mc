@@ -280,7 +280,6 @@ $("#publicaciones").on("click", ".like-btn", function () {
 // dar comentario
 let idComentario = 300;
 function comentar(contenido, idPublicacion) {
-  console.log(idComentario, idPublicacion, MATRICULA, LLAVE_SECRETA, contenido);
   $.ajax({
     url: "https://ex2r.fime.uanl.mx/api/Comentarios",
     method: "POST",
@@ -308,7 +307,6 @@ $("#publicaciones").on("click", ".comentar-btn", function () {
   if (!comentando) {
     comentando = true;
     console.log("comentando...");
-    console.log(this);
     $(this).siblings(".mostrar-comentarios").after(`
     
       <div id="comentario-div" class="mt-3">
@@ -330,7 +328,6 @@ $("#publicaciones").on("click", ".comentar-btn", function () {
         .parent()
         .parent()
         .attr("id");
-      console.log(contenido, idPublicacion);
       comentar(contenido, idPublicacion);
       comentando = false;
       console.log("comentado!");
